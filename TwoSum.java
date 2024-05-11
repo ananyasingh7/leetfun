@@ -1,3 +1,5 @@
+import java.util.HashMap;
+
 public class TwoSum {
     /**
      * Given an array of integers nums and an integer target, return indices of the two numbers
@@ -31,11 +33,45 @@ public class TwoSum {
      * @return an array of two indices of the two numbers that add up to the target
      */
     public static int[] twoSum(int[] nums, int target) {
-        // Your implementation goes here
-        return null;
+        int[] solution = new int[2];
+        for(int i = 0; i<nums.length; i++){
+            for(int j = i+1; j<nums.length; j++){
+                if(nums[i] + nums[j] == target) {
+                    solution[0] = i;
+                    solution[1] = j;
+                }
+            }
+        }
+        return solution;
+    }
+
+    // Follow-up: Can you come up with an algorithm that is less than O(n^2) time complexity?
+    public static int[] twoSumEff(int[] nums, int target) {
+        HashMap<Integer, Integer> numMap = new HashMap<>();
+        for(int i = 0; i<nums.length; i++){
+            int sub = target - nums[i];
+            if(numMap.containsKey(sub)){
+                return new int[] {numMap.get(sub), i};
+            }
+            numMap.put(nums[i], i);
+        }
+        return new int[] {};
     }
 
     public static void main(String[] args) {
-        twoSum(null, 0);
+        int[] exampleOne = {2, 7, 11, 15};
+        int targetOne = 9;
+        int[] resultOne = twoSumEff(exampleOne, targetOne);
+        System.out.println("Example 1 Output: [" + resultOne[0] + ", " + resultOne[1] + "]");
+
+        int[] exampleTwo = {3, 2, 4};
+        int targetTwo = 6;
+        int[] resultTwo = twoSumEff(exampleTwo, targetTwo);
+        System.out.println("Example 2 Output: [" + resultTwo[0] + ", " + resultTwo[1] + "]");
+
+        int[] exampleThree = {3, 3};
+        int targetThree = 6;
+        int[] resultThree = twoSum(exampleThree, targetThree);
+        System.out.println("Example 3 Output: [" + resultThree[0] + ", " + resultThree[1] + "]");
     }
 }
