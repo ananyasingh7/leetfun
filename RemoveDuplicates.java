@@ -1,7 +1,4 @@
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
 
 public class RemoveDuplicates {
     /**
@@ -52,19 +49,20 @@ public class RemoveDuplicates {
      * @return the number of unique elements in `nums`
      */
     public static int removeDuplicates(int[] nums) {
-        if(nums.length == 0) {
+        if (nums.length == 0) {
             return 0;
         }
 
         int uniqueIndex = 0;
-        for(int i = 1; i<nums.length; i++){
-            if(nums[i] != nums[uniqueIndex]){
+
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] != nums[uniqueIndex]) {
                 uniqueIndex++;
                 nums[uniqueIndex] = nums[i];
             }
         }
 
-        return uniqueIndex+1;
+        return uniqueIndex + 1;
     }
 
     public static void main(String[] args) {
@@ -95,45 +93,3 @@ public class RemoveDuplicates {
         }
     }
 }
-
-/*
-* PREWORK:
-* nums = [0,0,1,1,1,2,2,3,3,4]
-
-uniqueCounter = 0;
-index = 1;
-[0,0,1,1,1,2,2,3,3,4]
-nums[1] == nums[0]
-skip
-
-uniqueCounter = 0;
-index = 2;
-[0,0,1,1,1,2,2,3,3,4]
-nums[2] != nums[1]
-uniqueCounter = 1;
-nums[uniqueCounter] = nums[i] -> nums[1] = nums[2]
-[0,1,1,1,1,2,2,3,3,4]
-
-uniqueCounter = 1;
-index = 3;
-[0,1,1,1,1,2,2,3,3,4]
-nums[3] == nums[1]
-skip
-
-uniqueCounter = 1;
-index = 4;
-[0,1,1,1,1,2,2,3,3,4]
-nums[4] == nums[1]
-skip
-
-uniqueCounter = 1;
-index = 5;
-[0,1,1,1,1,2,2,3,3,4]
-nums[5] != nums[1]
-uniqueCounter = 2;
-nums[uniqueCounter] = nums[i] -> nums[2] = nums[5]
-[0,1,2,1,1,2,2,3,3,4]
-
-... CONTINUES
-
-* */
