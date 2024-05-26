@@ -30,7 +30,7 @@ public class StrStr {
     public static int strStr(String haystack, String needle) {
         int lengthOfNeedle = needle.length();
         int lengthOfHackstack = haystack.length();
-        HashMap<String, Integer> map = new HashMap<>();
+
         for(int i = 0; i<lengthOfHackstack; i++){
             if(i+lengthOfNeedle < lengthOfHackstack+1){
                 if(haystack.substring(i,i+lengthOfNeedle).equals(needle)){
