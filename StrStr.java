@@ -53,9 +53,12 @@ public class StrStr {
     public static int strStrOptimized(String haystack, String needle){
         int lengthOfNeedle = needle.length();
         int lengthOfHackstack = haystack.length();
+        if(lengthOfNeedle > lengthOfHackstack) {
+            return -1;
+        }
         for(int i = 0; i<lengthOfHackstack; i++){
             int j;
-            for(j = 0; j<lengthOfNeedle; j++){
+            for(j = 0; j < lengthOfNeedle && i + j < lengthOfHackstack; j++){
                 if(haystack.charAt(i+j) != needle.charAt(j)){
                     break;
                 }
