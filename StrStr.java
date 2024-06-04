@@ -28,6 +28,10 @@ public class StrStr {
 
     // brute force approach
     public static int strStr(String haystack, String needle) {
+        /*
+        Time Complexity: O((n-m+1) * m) where n is the length of the haystack string and m is the length of the needle string
+        Space Complexity: O(1) - constant space complexity.
+         */
         int lengthOfNeedle = needle.length();
         int lengthOfHackstack = haystack.length();
 
@@ -41,7 +45,27 @@ public class StrStr {
         return -1;
     }
 
-    // optimal approach TBD
+    /*
+    The second approach is generally more efficient because it avoids creating new substrings in each iteration, which could lead to additional memory allocation and copying overhead.
+     */
+
+    // Sliding Window
+    public static int strStrOptimized(String haystack, String needle){
+        int lengthOfNeedle = needle.length();
+        int lengthOfHackstack = haystack.length();
+        for(int i = 0; i<lengthOfHackstack; i++){
+            int j;
+            for(j = 0; j<lengthOfNeedle; j++){
+                if(haystack.charAt(i+j) != needle.charAt(j)){
+                    break;
+                }
+            }
+            if(j == lengthOfNeedle){
+                return i;
+            }
+        }
+        return -1;
+    }
 
     public static void main(String[] args) {
         String[][] testCases = {
@@ -55,7 +79,7 @@ public class StrStr {
         for (int i = 0; i < testCases.length; i++) {
             String haystack = testCases[i][0];
             String needle = testCases[i][1];
-            int result = strStr(haystack, needle);
+            int result = strStrOptimized(haystack, needle);
             System.out.printf("Input: haystack = \"%s\", needle = \"%s\", Expected Output: %d, Output: %d%n",
                     haystack, needle, expectedOutputs[i], result);
             if (result != expectedOutputs[i]) {
